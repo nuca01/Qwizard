@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct QuizCompletionView: View {
+    var correctAnswers: Int
+    
     var body: some View {
         VStack {
             imageView
@@ -36,11 +38,12 @@ struct QuizCompletionView: View {
     
     private var statisticsView: some View {
         HStack(spacing: 20) {
-            statisticView(value: "15", description: "total Credits")
+            statisticView(value: "\(correctAnswers)", description: "total Score")
             
-            statisticView(value: "1:44", description: "Speed")
+//            statisticView(value: "1:44", description: "Speed")
+//            
+//            statisticView(value: "100%", description: "Perfection")
             
-            statisticView(value: "100%", description: "Perfection")
         }
     }
     
@@ -62,8 +65,4 @@ struct QuizCompletionView: View {
             Text(description)
         }
     }
-}
-
-#Preview {
-    QuizCompletionView()
 }

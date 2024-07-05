@@ -75,18 +75,6 @@ struct YourAwardsPageView: View {
                 .background(Color.blue)
                 .cornerRadius(8)
         }
-
-//        Button(action: {
-//            NavigationLink(value: <#T##Hashable?#>, label: <#T##() -> View#>)
-//        }) {
-//            Text("Continue")
-//                .frame(maxWidth: .infinity)
-//                .foregroundColor(.white)
-//                .font(.headline)
-//                .padding()
-//                .background(Color.blue)
-//                .cornerRadius(8)
-//        }
     }
 }
 

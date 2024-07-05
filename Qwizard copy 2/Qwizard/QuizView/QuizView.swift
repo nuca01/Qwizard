@@ -76,7 +76,7 @@ struct QuizView: View {
     
     private var continueButton: some View {
         NavigationLink(
-            destination: !viewModel.poppedQuestions().isEmpty ? AnyView(QuizView(questions: viewModel.poppedQuestions())) : AnyView(QuizCompletionView())
+            destination: !viewModel.poppedQuestions().isEmpty ? AnyView(QuizView(questions: viewModel.poppedQuestions(), correctAnswers: selectedOption == viewModel.realAnswer ? viewModel.correctAnswers + 1: viewModel.correctAnswers)) : AnyView(QuizCompletionView(correctAnswers: selectedOption == viewModel.realAnswer ? viewModel.correctAnswers + 1: viewModel.correctAnswers))
         ) {
             Text(viewModel.poppedQuestions().isEmpty ? "Finish" : "Continue")
                 .frame(maxWidth: .infinity)
@@ -99,8 +99,9 @@ struct QuizView: View {
         }
     }
 
-    init(questions: [Question]) {
+    init(questions: [Question], correctAnswers: Int) {
         self.viewModel = QuizViewModel(questions: questions)
+        self.viewModel.correctAnswers = correctAnswers
     }
 }
 

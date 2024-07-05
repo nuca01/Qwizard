@@ -13,6 +13,9 @@ struct QuizOptionView: View {
     var image: String
     var time: String
     var viewModel = QuizOptionViewModel()
+    @ObservedObject var usermanager: UserManager = UserManager.shared
+    
+    
     
     private var description: String {
         title.contains("Without") ? "In case you take this quiz you won’t be able to see your ranking before purchasing an item. You will still be able to see your score to estimate whether you’re eligible to receive the prize. " : "In case you take this quiz you’ll be able to see your ranking right away."
@@ -29,7 +32,7 @@ struct QuizOptionView: View {
             HStack {
                 VStack(alignment: .leading) {
                     sponsorsView
-                    takeQuizButton
+                    takeQuizButton(number: title.contains("Without") ? 1: 2)
                 }
                 
                 Spacer()
@@ -104,20 +107,6 @@ struct QuizOptionView: View {
             .clipShape(RoundedRectangle(cornerRadius: 25.0))
     }
     
-    private var takeQuizButton: some View {
-        NavigationLink {
-            QuizView(questions: viewModel.questions)
-        } label: {
-            Text("Take The Quiz")
-                .foregroundColor(.black)
-                .padding(.horizontal, 20)
-                .padding(.vertical, 7)
-                .background(Color.orange.opacity(0.8))
-                .cornerRadius(12)
-        }
-        .disabled(!User.loggedIn)
-    }
-    
     private func timeView(with time: String) -> some View {
         Text(time)
             .padding()
@@ -140,5 +129,21 @@ struct QuizOptionView: View {
             
             timeDescriptionView(with: description)
         }
+    }
+    
+    private func takeQuizButton(number: Int) -> some View {
+        NavigationLink {
+            QuizView(questions: number == 1 ? viewModel.questions1: viewModel.questions2, correctAnswers: 0)
+            
+        } label: {
+            Text("Take The Quiz")
+                .foregroundColor(.black)
+                .padding(.horizontal, 20)
+                .padding(.vertical, 7)
+                .background(usermanager.loggedIn ? Color.orange.opacity(0.8): .gray.opacity(0.15))
+                .cornerRadius(12)
+        }
+        .disabled(!usermanager.loggedIn)
+        
     }
 }
