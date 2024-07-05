@@ -16,12 +16,7 @@ struct HomePageView: View {
                         .font(.largeTitle)
                         .padding()
                     
-                    QuizOptionView(
-                        title: "Quiz Without Visible Ranking",
-                        sponsors: ["KFC", "Amazon"], 
-                        image: "KFC",
-                        time: "00:05:00"
-                    )
+                    QuizOptionView(title: "Quiz Without Visible Ranking", sponsors: ["KFC", "Amazon"], image: "KFC", time: "00:05:00")
                     
                     QuizOptionView(
                         title: "Quiz With Visible Ranking",

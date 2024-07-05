@@ -17,4 +17,16 @@ class QuizOptionViewModel {
         Question(quest: "how is dreaming in Georgian language?", answer1: "ძილი", answer2: "ოცნება", answer3: "წოლა", readAnswer: "ოცნება"),
         Question(quest: "how is a cat in Georgian language?", answer1: "ძაღლი", answer2: "კატა", answer3: "ლომი", readAnswer: "კატა")
     ]
+    
+    func hours(timer: Int) -> Int {
+        timer / 60 / 60
+    }
+    
+    func minutes(timer: Int) -> Int {
+        (timer / 60) - (hours(timer: timer) * 60)
+    }
+    
+    func seconds(timer: Int) -> Int {
+        timer - (minutes(timer: timer) * 60)
+    }
 }

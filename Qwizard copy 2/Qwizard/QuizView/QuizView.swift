@@ -10,6 +10,7 @@ import SwiftUI
 struct QuizView: View {
     @State private var selectedOption: String? = nil
     @State private var timer: Int = 33
+    @State private var timeIsUp: Bool = false
     @ObservedObject var viewModel: QuizViewModel
     
     var body: some View {
@@ -28,6 +29,14 @@ struct QuizView: View {
         }
         .padding()
         .navigationBarBackButtonHidden(true)
+        .onChange(of: timer) {
+            if timer == 0 {
+                timeIsUp = true
+            }
+        }
+        .navigationDestination(isPresented: $timeIsUp) {
+            !viewModel.poppedQuestions().isEmpty ? AnyView(QuizView(questions: viewModel.poppedQuestions(), correctAnswers: viewModel.correctAnswers)) : AnyView(QuizCompletionView(correctAnswers: viewModel.correctAnswers))
+        }
     }
     
     private var timerAndWarningView: some View {

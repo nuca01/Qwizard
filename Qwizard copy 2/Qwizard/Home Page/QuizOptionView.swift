@@ -14,7 +14,8 @@ struct QuizOptionView: View {
     var time: String
     var viewModel = QuizOptionViewModel()
     @ObservedObject var usermanager: UserManager = UserManager.shared
-    
+    @State var timerStarted: Bool = false
+    @State private var timer: Int
     
     
     private var description: String {
@@ -45,6 +46,11 @@ struct QuizOptionView: View {
         .cornerRadius(12)
         .padding(.horizontal)
         .shadow(color: .gray.opacity(0.4), radius: 3)
+        .onAppear {
+            if !timerStarted {
+                startTimer()
+            }
+        }
         
     }
     
@@ -66,11 +72,11 @@ struct QuizOptionView: View {
     
     private var timerView: some View {
         HStack(spacing: 10) {
-            timeAndDescriptionView(time: "00", description: "Hours")
+            timeAndDescriptionView(time: "\(viewModel.hours(timer: timer))", description: "Hours")
             
-            timeAndDescriptionView(time: "05", description: "Minutes")
+            timeAndDescriptionView(time: "\(viewModel.minutes(timer: timer))", description: "Minutes")
             
-            timeAndDescriptionView(time: "55", description: "Seconds")
+            timeAndDescriptionView(time: "\(viewModel.seconds(timer: timer))", description: "Seconds")
         }
         .frame(
             maxWidth: .infinity
@@ -144,6 +150,28 @@ struct QuizOptionView: View {
                 .cornerRadius(12)
         }
         .disabled(!usermanager.loggedIn)
+        .disabled(timer != 0)
         
+    }
+    
+    func startTimer() {
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+            if self.timer > 0 {
+                self.timer -= 1
+            } else {
+                timer.invalidate()
+            }
+        }
+        timerStarted = true
+    }
+    
+    init(title: String, sponsors: [String], image: String, time: String) {
+        self.title = title
+        self.sponsors = sponsors
+        self.image = image
+        self.time = time
+        self.timer = 61
+        
+        startTimer()
     }
 }

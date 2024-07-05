@@ -37,14 +37,14 @@ struct QuizCompletionView: View {
     }
     
     private var statisticsView: some View {
-        HStack(spacing: 20) {
+//        HStack(spacing: 20) {
             statisticView(value: "\(correctAnswers)", description: "total Score")
             
 //            statisticView(value: "1:44", description: "Speed")
 //            
 //            statisticView(value: "100%", description: "Perfection")
             
-        }
+//        }
     }
     
     private var continueButton: some View {
