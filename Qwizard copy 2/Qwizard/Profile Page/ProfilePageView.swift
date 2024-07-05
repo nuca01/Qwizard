@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfilePageView: View {
     @StateObject private var viewModel = ProfilePageViewModel()
     @State private var userNotLoggedIn: Bool = true
+    @ObservedObject private var userManager: UserManager = UserManager.shared
     
     var body: some View {
         NavigationStack {
@@ -46,7 +47,7 @@ struct ProfilePageView: View {
     }
     
     private var scoreView: some View {
-        Text("score: \(viewModel.score ?? "unavailable")")
+        Text("score: \(userManager.score)")
             .foregroundStyle(.green)
             .font(.system(size: 20))
             .fontWeight(.bold)

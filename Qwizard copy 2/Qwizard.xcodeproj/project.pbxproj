@@ -49,7 +49,7 @@
 		876E8A272C3871D000C6C345 /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
 		8770FCA52C36CB6200D23A4D /* Qwizard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qwizard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8770FCA82C36CB6200D23A4D /* QwizardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QwizardApp.swift; sourceTree = "<group>"; };
-		8770FCAC2C36CB6400D23A4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8770FCAC2C36CB6400D23A4D /* Assets.xcassets */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = Assets.xcassets; sourceTree = "<group>"; };
 		8770FCAF2C36CB6400D23A4D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8770FCB72C36ED9800D23A4D /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 		8770FCB92C36F19C00D23A4D /* QuizOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizOptionView.swift; sourceTree = "<group>"; };

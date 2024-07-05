@@ -146,7 +146,7 @@ struct QuizOptionView: View {
                 .foregroundColor(.black)
                 .padding(.horizontal, 20)
                 .padding(.vertical, 7)
-                .background(usermanager.loggedIn ? Color.orange.opacity(0.8): .gray.opacity(0.15))
+                .background(usermanager.loggedIn && timer == 0 ? Color.orange.opacity(0.8): .gray.opacity(0.15))
                 .cornerRadius(12)
         }
         .disabled(!usermanager.loggedIn)
@@ -170,7 +170,7 @@ struct QuizOptionView: View {
         self.sponsors = sponsors
         self.image = image
         self.time = time
-        self.timer = 61
+        self.timer = 20
         
         startTimer()
     }
