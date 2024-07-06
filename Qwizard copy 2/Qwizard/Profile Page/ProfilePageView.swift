@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfilePageView: View {
     @StateObject private var viewModel = ProfilePageViewModel()
     @State private var userNotLoggedIn: Bool = true
+    @ObservedObject private var userManager: UserManager = UserManager.shared
     
     var body: some View {
         NavigationStack {
@@ -46,7 +47,7 @@ struct ProfilePageView: View {
     }
     
     private var scoreView: some View {
-        Text("score: \(viewModel.score ?? "unavailable")")
+        Text("score: \(userManager.score)")
             .foregroundStyle(.green)
             .font(.system(size: 20))
             .fontWeight(.bold)
@@ -71,31 +72,7 @@ struct ProfilePageView: View {
                 HStack {
                     PrizeView(sponsor: "Spotify", description: "10% discount on 1 year premium")
                     
-                    Image("unavailable-image")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 100)
-                        .clipShape(RoundedRectangle(cornerRadius: 25.0))
-                }
-            }
-            
-            VStack {
-                HStack {
-                    PrizeView(sponsor: "Spotify", description: "10% discount on 1 year premium")
-                    
-                    Image("unavailable-image")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 100)
-                        .clipShape(RoundedRectangle(cornerRadius: 25.0))
-                }
-            }
-            
-            VStack {
-                HStack {
-                    PrizeView(sponsor: "Spotify", description: "10% discount on 1 year premium")
-                    
-                    Image("unavailable-image")
+                    Image("spotify")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 100)

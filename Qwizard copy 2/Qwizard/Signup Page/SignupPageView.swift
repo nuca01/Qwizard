@@ -37,7 +37,7 @@ struct SignupPageView: View {
                     viewModel.user?.password = password
                     isSignUpPagePresented = false
                     userNotLoggedIn = false
-                    User.loggedIn = true
+                    UserManager.shared.loggedIn = true
                 }) {
                     Text("finish signing up")
                         .frame(maxWidth: .infinity)

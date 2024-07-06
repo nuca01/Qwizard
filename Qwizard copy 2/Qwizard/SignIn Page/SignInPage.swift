@@ -31,7 +31,7 @@ struct SignInPageView: View {
                 Button(action: {
                     isSignInPagePresented = false
                     userNotLoggedIn = false
-                    User.loggedIn = true
+                    UserManager.shared.loggedIn = true
                 }) {
                     Text("Sign in")
                         .frame(maxWidth: .infinity)

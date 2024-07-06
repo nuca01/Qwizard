@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SponsorsView: View {
+    var isFirstQuiz: Bool
+    
     var body: some View {
         VStack {
             titleView
@@ -27,9 +29,9 @@ struct SponsorsView: View {
             
             VStack {
                 HStack {
-                    PrizeView(sponsor: "Spotify", description: "10% discount on 1 year premium")
+                    PrizeView(sponsor: isFirstQuiz ? "Amazon": "Walmart", description: "10% discount on everything")
                     
-                    Image("unavailable-image")
+                    Image(isFirstQuiz ? "amazon": "walmart")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 100)
@@ -40,7 +42,7 @@ struct SponsorsView: View {
                 HStack {
                     Spacer()
                     
-                    Text("top 100")
+                    Text("top 300")
                         .font(.subheadline)
                         .foregroundColor(.red)
                 }
@@ -48,29 +50,9 @@ struct SponsorsView: View {
             
             VStack {
                 HStack {
-                    PrizeView(sponsor: "Spotify", description: "10% discount on 1 year premium")
+                    PrizeView(sponsor: isFirstQuiz ? "KFC": "Burger King", description: "20% discount on every burger")
                     
-                    Image("unavailable-image")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 100)
-                        .clipShape(RoundedRectangle(cornerRadius: 25.0))
-                }
-                
-                HStack {
-                    Spacer()
-                    
-                    Text("top 100")
-                        .font(.subheadline)
-                        .foregroundColor(.red)
-                }
-            }
-            
-            VStack {
-                HStack {
-                    PrizeView(sponsor: "Spotify", description: "10% discount on 1 year premium")
-                    
-                    Image("unavailable-image")
+                    Image(isFirstQuiz ? "KFC": "Burger-King")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 100)
@@ -87,8 +69,4 @@ struct SponsorsView: View {
             }
         }
     }
-}
-
-#Preview {
-    SponsorsView()
 }

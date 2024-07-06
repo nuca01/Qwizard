@@ -12,7 +12,6 @@ struct User: Codable, Identifiable {
     var email: String?
     var password: String?
     var id: String?
-    static var loggedIn: Bool = false
     
     enum CodingKeys: String, CodingKey {
         case userName
@@ -20,4 +19,14 @@ struct User: Codable, Identifiable {
         case password
         case id = "personalNumber"
     }
+}
+
+class UserManager: ObservableObject {
+    static let shared = UserManager()
+
+    @Published var loggedIn: Bool = false
+    @Published var score: Int = 0
+    @Published var ranking: Int = 0
+
+    private init() {}
 }

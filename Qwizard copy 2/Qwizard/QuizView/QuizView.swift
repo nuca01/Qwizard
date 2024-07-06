@@ -10,6 +10,7 @@ import SwiftUI
 struct QuizView: View {
     @State private var selectedOption: String? = nil
     @State private var timer: Int = 33
+    @State private var timeIsUp: Bool = false
     @ObservedObject var viewModel: QuizViewModel
     
     var body: some View {
@@ -28,6 +29,14 @@ struct QuizView: View {
         }
         .padding()
         .navigationBarBackButtonHidden(true)
+        .onChange(of: timer) {
+            if timer == 0 {
+                timeIsUp = true
+            }
+        }
+        .navigationDestination(isPresented: $timeIsUp) {
+            !viewModel.poppedQuestions().isEmpty ? AnyView(QuizView(questions: viewModel.poppedQuestions(), correctAnswers: viewModel.correctAnswers)) : AnyView(QuizCompletionView(correctAnswers: viewModel.correctAnswers))
+        }
     }
     
     private var timerAndWarningView: some View {
@@ -76,7 +85,7 @@ struct QuizView: View {
     
     private var continueButton: some View {
         NavigationLink(
-            destination: !viewModel.poppedQuestions().isEmpty ? AnyView(QuizView(questions: viewModel.poppedQuestions())) : AnyView(QuizCompletionView())
+            destination: !viewModel.poppedQuestions().isEmpty ? AnyView(QuizView(questions: viewModel.poppedQuestions(), correctAnswers: selectedOption == viewModel.realAnswer ? viewModel.correctAnswers + 1: viewModel.correctAnswers)) : AnyView(QuizCompletionView(correctAnswers: selectedOption == viewModel.realAnswer ? viewModel.correctAnswers + 1: viewModel.correctAnswers))
         ) {
             Text(viewModel.poppedQuestions().isEmpty ? "Finish" : "Continue")
                 .frame(maxWidth: .infinity)
@@ -99,8 +108,9 @@ struct QuizView: View {
         }
     }
 
-    init(questions: [Question]) {
+    init(questions: [Question], correctAnswers: Int) {
         self.viewModel = QuizViewModel(questions: questions)
+        self.viewModel.correctAnswers = correctAnswers
     }
 }
 
