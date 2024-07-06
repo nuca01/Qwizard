@@ -49,7 +49,7 @@ struct QuizCompletionView: View {
     
     private var continueButton: some View {
         NavigationLink(
-            destination: YourAwardsPageView()
+            destination: HomePageView()
         ) {
             Text("Continue")
                 .foregroundColor(.white)

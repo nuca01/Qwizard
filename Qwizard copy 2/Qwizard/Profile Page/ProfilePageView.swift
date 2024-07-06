@@ -72,31 +72,7 @@ struct ProfilePageView: View {
                 HStack {
                     PrizeView(sponsor: "Spotify", description: "10% discount on 1 year premium")
                     
-                    Image("unavailable-image")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 100)
-                        .clipShape(RoundedRectangle(cornerRadius: 25.0))
-                }
-            }
-            
-            VStack {
-                HStack {
-                    PrizeView(sponsor: "Spotify", description: "10% discount on 1 year premium")
-                    
-                    Image("unavailable-image")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 100)
-                        .clipShape(RoundedRectangle(cornerRadius: 25.0))
-                }
-            }
-            
-            VStack {
-                HStack {
-                    PrizeView(sponsor: "Spotify", description: "10% discount on 1 year premium")
-                    
-                    Image("unavailable-image")
+                    Image("spotify")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 100)

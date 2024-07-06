@@ -32,7 +32,7 @@ struct QuizOptionView: View {
             
             HStack {
                 VStack(alignment: .leading) {
-                    sponsorsView
+                    sponsorsView(isFirstQuiz: title.contains("Without") ? true: false)
                     takeQuizButton(number: title.contains("Without") ? 1: 2)
                 }
                 
@@ -82,29 +82,7 @@ struct QuizOptionView: View {
             maxWidth: .infinity
         )
     }
-    
-    private var sponsorsView: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            Text("Sponsored by:")
-                .font(.subheadline)
-                .foregroundStyle(.gray)
-            
-            Text("\(sponsors.joined(separator: ", "))")
-            
-            prizesViewButton
-        }
-    }
-    
-    private var prizesViewButton: some View {
-        NavigationLink(destination: SponsorsView()) {
-            Text("See Prizes")
-                .font(.subheadline)
-                .foregroundStyle(.blue)
-                .underline()
-        }
-        .padding(.bottom)
-    }
-    
+
     private var imageView: some View {
         Image(image)
             .resizable()
@@ -152,6 +130,28 @@ struct QuizOptionView: View {
         .disabled(!usermanager.loggedIn)
         .disabled(timer != 0)
         
+    }
+    
+    private func prizesViewButton(isFirstQuiz: Bool) -> some View {
+        NavigationLink(destination: SponsorsView(isFirstQuiz: isFirstQuiz)) {
+            Text("See Prizes")
+                .font(.subheadline)
+                .foregroundStyle(.blue)
+                .underline()
+        }
+        .padding(.bottom)
+    }
+    
+    private func sponsorsView(isFirstQuiz: Bool) -> some View {
+        VStack(alignment: .leading, spacing: 5) {
+            Text("Sponsored by:")
+                .font(.subheadline)
+                .foregroundStyle(.gray)
+            
+            Text("\(sponsors.joined(separator: ", "))")
+            
+            prizesViewButton(isFirstQuiz: isFirstQuiz)
+        }
     }
     
     func startTimer() {
